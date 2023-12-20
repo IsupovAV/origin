@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
 
-// Чтобы протестировать использовал кодировку UTF8 для исходных файлов .сpp,
-// а запускал готовый .exe - файл используя gitbush
-
 class Counter {
 public:
   Counter(int new_count) : count_(new_count) {}
@@ -14,7 +11,7 @@ public:
   void Dec() { 
     --count_;
   }
-  int GetCount() { 
+  int GetCount() const {
     return count_;
   }
 
@@ -22,7 +19,7 @@ private:
   int count_;
 };
 
-void TestCounter(int start) {
+void TestCounter(const int start) {
   char op = 0;
 
   Counter cnt(start);

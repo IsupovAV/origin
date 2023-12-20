@@ -1,8 +1,5 @@
 #include <iostream>
 
-// Чтобы протестировать использовал кодировку UTF8 для исходных файлов .сpp,
-// а запускал готовый .exe - файл используя gitbush командной строки 
-
 class Calculator {
 public:
   double add() { return num1 + num2; }
@@ -12,11 +9,13 @@ public:
   double divide_1_2() { return num1 / num2; }
   double divide_2_1() { return num2 / num1; }
   bool set_num1(double num1) {
-    this->num1 = num1;
+    if(num1 != 0)
+      this->num1 = num1;
     return num1 != 0;
   }
   bool set_num2(double num2) {
-    this->num2 = num2;
+    if(num2 != 0)
+      this->num2 = num2;
     return num2 != 0;
   }
 
@@ -54,7 +53,7 @@ void PrintResult(Calculator &calc) {
 }
 
 void TestCalculatorWork() {
-  Calculator calc;
+  Calculator calc{};
   InputArguments(calc);
   PrintResult(calc);
 }
