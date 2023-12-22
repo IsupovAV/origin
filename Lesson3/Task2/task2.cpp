@@ -51,22 +51,18 @@ void Swap(AddressPtr &a, AddressPtr &b) {
 }
 
 // Сортировка пузырьком
+// https://www.geeksforgeeks.org/bubble-sort/
 void BubbleSort(AddressPtr *&arr, int n) {
   for (int i = 0; i < n - 1; ++i) {
-    bool flag = false;
-    int mi = i;
-    for (int j = i; j < n - i - 1; ++j) {
+    bool swapped = false;
+    for (int j = 0; j < n - i - 1; ++j) {
       if (arr[j]->GetCity() < arr[j + 1]->GetCity()) {
         Swap(arr[j], arr[j + 1]);
-        flag = true;
+        swapped = true;
       }
-      if (arr[j]->GetCity() > arr[mi]->GetCity())
-        mi = j;
     }
-    if (!flag)
+    if (!swapped)
       break;
-    if (mi != i)
-      Swap(arr[i], arr[mi]);
   }
 }
 
@@ -137,8 +133,8 @@ int main() {
   ReadFile(inp, arr, n);
   inp.close();
 
-  // BubbleSort(arr, n);
-  QuickSort(arr, 0, n - 1);
+  BubbleSort(arr, n);
+  //QuickSort(arr, 0, n - 1);
 
   WriteFile(arr, n);
 
