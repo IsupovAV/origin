@@ -1,5 +1,5 @@
 Для сборки проекта под windows, с использованием CMake необходимо:
-1. Перейти в него из папки task1 (cd build)
+1. Перейти в него из папки cpp-diplom2 (cd build)
 2. Выполнить команду cmake ..
 3. Выполнить команду cmake --build .
 4. В каталоге \cpp-diplom2\bin\Debug лежит исполняемый файл race_simulator.exe и 
