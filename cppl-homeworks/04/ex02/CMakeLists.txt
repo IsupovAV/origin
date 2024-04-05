@@ -7,7 +7,9 @@ project(ex02)
 find_package(Catch2 CONFIG REQUIRED)
 
 # добавляем запускаемый файл с именем проекта
-add_executable(ex02 main.cpp)
+add_executable(ex02 src/main.cpp
+        src/test_case.cpp
+        src/list.h)
 
 # линкуем библиотеки Catch2
 target_link_libraries(ex02 PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
