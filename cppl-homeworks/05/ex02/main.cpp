@@ -2,12 +2,32 @@
 #include <iostream>
 #include <random>
 
+// для заполнения массива
 double get_random() {
   std::random_device r;
   std::default_random_engine e(r());
   std::uniform_real_distribution<double> uniform_dist(1.0, 17.0);
   return uniform_dist(e);
 }
+
+// как объяснял на лекции преподователь
+template<class T>
+class TWrapper {
+public:
+  TWrapper(T* arr, const int n): n_(n){
+    arr_ = arr;
+  }
+
+  T& operator[](int i) {
+    if (i < 0 || i >= n_)
+      throw std::runtime_error("Выход за пределы массива");
+    return arr_[i];
+  }
+
+private:
+  int n_;
+  T* arr_;
+};
 
 template<class T>
 class Table {
@@ -39,28 +59,25 @@ public:
     return row_ * col_;
   }
 
-  // Взял отсюда
-  // https://stackoverflow.com/questions/6969881/operator-overload-for-two-dimensional-array
-  struct Proxy_ {
-    T *_array;
 
-    Proxy_(T *_array) : _array(_array) {}
-
-    T &operator[](int index) {
-        return _array[index];
+  TWrapper<T> operator[](const int index) const {
+    if(index < 0 || index >= row_){
+      throw std::runtime_error("Выход за пределы массива");
     }
-
-  };
-
-  Proxy_ operator[](const int index) const {
-    return Proxy_(storage_[index]);
+    TWrapper<T> result(storage_[index], col_);
+    return result;
   }
 
-  Proxy_ operator[](const int index) {
-    return Proxy_(storage_[index]);
+  TWrapper<T> operator[](const int index) {
+    if(index < 0 || index >= row_){
+      throw std::runtime_error("Выход за пределы массива");
+    }
+    TWrapper<T> result(storage_[index], col_);
+
+    return result;
   }
 
-  Table& operator=(const Table &table) {
+  Table &operator=(const Table &table) {
     if (this == &table)
       return *this;
     DeleteStorage_();
@@ -92,7 +109,7 @@ private:
     }
   }
 
-  void DeleteStorage_(){
+  void DeleteStorage_() {
     for (int i = 0; i < row_; ++i) {
       delete[] storage_[i];
     }
@@ -115,17 +132,36 @@ void print_table(const Table<T> &table) {
 int main() {
 #ifdef _WIN32
   system("chcp 65001");
-#endif // _WIN32
+#endif// _WIN32
 
   auto test = Table<int>(2, 3);
   test[0][0] = 4;
   std::cout << "Проверил присваивание test[0][0] = 4: " << test[0][0] << std::endl;
+
+	std::cout << std::endl;
+  // Смотрим исключение по первому индексу
+  try{
+    test[5][8] = 0;
+  }catch(std::runtime_error& e){
+    std::cout << e.what() << " строки" <<  std::endl;
+  }
+
+  // Смотрим исключение по второму индексу
+  try{
+    test[1][8] = 0;
+  }catch(std::runtime_error& e){
+    std::cout << e.what() << " столбцы" << std::endl;
+  }
+
+	std::cout << std::endl;
   std::cout << "Общее количество элементов Table<int>[2][3]: " << test.Size() << std::endl;
 
   auto test1 = Table<double>(3, 4);
 
-  for (int i = 0; i < test1.GetRow(); ++i) {
-    for (int j = 0; j < test1.GetCol(); ++j) {
+  int n = test1.GetRow();
+  int m = test1.GetCol();
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
       test1[i][j] = get_random();
     }
   }
@@ -135,16 +171,17 @@ int main() {
 
   // Проверил конструктор копирования
   auto test2(test1);
-  std::cout << "Массив полученный конструтором копирования test2(test1):\n";
+  std::cout << "Массив полученный конструктором копирования test2(test1):\n";
   print_table(test2);
   std::cout << std::endl;
 
   std::cout << "Исходный массив test3:\n";
   auto test3 = Table<double>(3, 3);
-  int n = test3.GetRow(), m = test3.GetCol();
+  n = test3.GetRow();
+  m = test3.GetCol();
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < m; ++j) {
-      test3[i][j] = (i + 1) * (j + 1);
+      test3[i][j] = get_random();
     }
   }
   print_table(test3);
