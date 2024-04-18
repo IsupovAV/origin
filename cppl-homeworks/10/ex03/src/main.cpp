@@ -7,12 +7,19 @@
 4. Метод release, который освобождает владение и возвращает сырой указатель.
 5. Деструктор.
 */
-#include <catch2/catch_all.hpp>
+#include <iostream>
+#include <vector>
+
+#include "simple_unique_ptr.h"
 
 int main(int argc, char *argv[]) {
 #ifdef _WIN32
   system("chcp 65001");
 #endif// _WIN32
 
-  return Catch::Session().run(argc, argv);
+  simple_unique_ptr<std::vector<int>> ptr { new std::vector<int> { 1, 2, 3, 4, 5 } };
+	
+	std::cout << (*ptr)[4] << std::endl;
+ 
+  return 0;
 }

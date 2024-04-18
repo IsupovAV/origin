@@ -1,6 +1,6 @@
 #include <catch2/catch_all.hpp>
 
-#include "simple_unique_ptr.h"
+#include "../src/simple_unique_ptr.h"
 
 TEST_CASE("Тестирование упрощённой реализации simple_unique_ptr") {
   SECTION("1. Конструктор")
@@ -85,3 +85,13 @@ TEST_CASE("Тестирование упрощённой реализации si
     delete tmp;
   }
 }
+
+int main(int argc, char *argv[]) {
+#ifdef _WIN32
+  system("chcp 65001");
+#endif// _WIN32
+
+  return Catch::Session().run(argc, argv);
+
+}
+
