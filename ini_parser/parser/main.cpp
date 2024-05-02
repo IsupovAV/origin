@@ -5,6 +5,7 @@ using namespace parser;
 int main(int argc, char **argv) {
 #ifdef _WIN32
   system("chcp 65001");
+  setlocale(LC_ALL, ".UTF8");
 #endif // _WIN32
 
   std::string fname = "config.ini";
