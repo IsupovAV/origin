@@ -1,7 +1,6 @@
 #pragma once
 
 #include <algorithm>
-#include <any>
 #include <cctype>
 #include <fstream>
 #include <iostream>
@@ -9,80 +8,70 @@
 #include <memory>
 #include <string>
 
+#include "string_utils.h"
+
 namespace parser {
-
-constexpr char LEFT_SECTION = '[';
-constexpr char RIGHT_SECTION = ']';
-constexpr char COMMENT = ';';
-constexpr char EQUAL = '=';
-constexpr char DOT = '.';
-
-// https://stackoverflow.com/questions/216823/how-to-trim-a-stdstring
-// trim from start (in place)
-inline void ltrim(std::string &s) {
-  s.erase(s.begin(), std::find_if(s.begin(), s.end(),
-    [](auto ch) {
-            return !std::isspace(ch);
-          }));
-}
-
-// trim from end (in place)
-inline void rtrim(std::string &s) {
-  s.erase(std::find_if(s.rbegin(), s.rend(),
-  [](auto ch) { return !std::isspace(ch); })
-              .base(),
-          s.end());
-}
-
-inline void trim(std::string &s) {
-  ltrim(s);
-  rtrim(s);
-}
 
 class ini_parser {
 public:
-
-  ini_parser(const std::string& file_name);
+  ini_parser(const std::string &file_name);
   ~ini_parser() = default;
 
+  // 1. Основной шаблон, по которому будет проводиться сопоставление
   template <typename T>
-  T get_value(std::string &&request) {
-    if (request.find(DOT) == std::string::npos)
-      throw std::logic_error("bad request");
+  T get_value(
+      const std::string &section_var) { // вместо тела, можно поставить ;
+                                        // будет просто ошибка компиляции
+    // Тут только одно предупреждение, чтобы сказать, что надо пользоваться уже
+    // заданными конвертациями
+    static_assert(sizeof(T) == -1, "not implemented type for get_value");
+  }
 
-    if (request[0] == DOT)
-      throw std::logic_error("bad request");
+  // 2. конкретный шаблон для стринга
+  template <> 
+  std::string get_value(const std::string &section_var) {
+    auto p = unpack_(section_var); // p.first - section, p.second - var
+    return get_value_string_(p.first, p.second);
+  }
 
-    std::string var_name =
-        request.substr((request.find(DOT) + 1), request.length());
-    request.erase(request.find(DOT), request.length());
+  // 3. конкретный шаблон для инта
+  template <> 
+  int get_value(const std::string &section_var) {
+    auto p = unpack_(section_var); // p.first - section, p.second - var
+    auto str_val = get_value_string_(p.first, p.second);
+    if (!atof(str_val.c_str()))
+      throw std::logic_error(
+          "bad request, variable " + p.second + " cannot be converted to type int");
 
-    if(content_.contains(request)){
-      if (content_[request].contains(var_name)) {
-        return any_cast<T>(content_[request][var_name]);
-      } else{
-        std::cout << "no variable: " << var_name << " in section: "
-                  << request << std::endl;
-        std::cout << "try the variables: " << std::endl;
-        for(const auto& [key, val] : content_[request])
-          std::cout << key << std::endl;
-      }
-    }else{
-      std::cout << "section: " << request << " not found" << std::endl;
-      std::cout << "try the section: " << std::endl;
-      for(const auto& [section, val] : content_)
-        std::cout << '[' << section << ']' << std::endl;
-    }
+    return atoi(str_val.c_str());
+  }
 
-    throw std::logic_error("bad request");
+  // 4. конкретный шаблон для float/double
+  template <> 
+  double get_value(const std::string &section_var) {
+    auto p = unpack_(section_var); // p.first - section, p.second - var
+    auto str_val = get_value_string_(p.first, p.second);
+    if (!atof(str_val.c_str()))
+      throw std::logic_error("bad request, variable " + p.second +
+                             " cannot be converted to type double");
+
+    return atof(str_val.c_str());
   }
 
   void dump() const;
 
 private:
-  void trim_comment_(std::string& s);
-  std::any convert_value_(std::string& val);
+  void trim_comment_(std::string &s);
+  std::string get_value_string_(const std::string &section,
+                                const std::string &var) {
+    return content_[section][var];
+  }
 
-  std::map<std::string, std::map<std::string, std::any>> content_;
+  // распаковка section.var в пару {section, var}
+  std::pair<std::string, std::string> unpack_(const std::string &sec_var);
+
+  // убрал any
+  std::map<std::string, std::map<std::string, std::string>> content_;
 };
+
 } // namespace parser
