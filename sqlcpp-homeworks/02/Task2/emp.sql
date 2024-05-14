@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS employees
   employee_id SERIAL PRIMARY KEY,
 	employee_name VARCHAR(150) NOT NULL,
 	department INT NOT NULL,
-	manager_id INT NULL
+	manager_id INT NULL,
+	CHECK(manager_id != employee_id)
 );
 
 
@@ -24,7 +25,8 @@ fk_manager_id
 FOREIGN KEY (manager_id) 
 REFERENCES employees(employee_id)
 ON DELETE CASCADE
-ON UPDATE RESTRICT;
+ON UPDATE RESTRICT
+;
 
 
 INSERT INTO employees(employee_name, department, manager_id)
