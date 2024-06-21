@@ -1,5 +1,5 @@
 Решение к занятию "C++ и БД. ORM"
-Открвть в Visdual Studio файл task06.sln
+Открыть в Visdual Studio файл task06.sln
 Собрать исполняемый файл.
 Добавлен файл: task06.png - схема базы данных task6.
 
