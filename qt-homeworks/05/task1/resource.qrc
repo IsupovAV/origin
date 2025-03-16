@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>stopwatch.ico</file>
+        <file>7fonts.ru_DS-DIGII.TTF</file>
+    </qresource>
+</RCC>
