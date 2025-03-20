@@ -27,8 +27,6 @@ private:
 
   int number_lap_ = 0;
 
-  QTimer* update_timer_;
-
 public slots:
   void UpdateTime();
 

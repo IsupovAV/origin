@@ -6,15 +6,14 @@ MainWindow::MainWindow(QWidget *parent)
   ui->setupUi(this);
   this->setWindowTitle("Секундомер");
 
-  update_timer_ = new QTimer(this);
   stopwatch_ = new StopWatch(this);
 
   ui->pb_start_stop->setText("Старт");
   ui->pb_circle->setEnabled(false);
 
-  update_timer_->start(1);
+  stopwatch_->startTimer(1);
 
-  connect(update_timer_, &QTimer::timeout, this, &MainWindow::UpdateTime);
+  connect(stopwatch_->getTimer(), &QTimer::timeout, this, &MainWindow::UpdateTime);
 
   connect(stopwatch_, &StopWatch::sig_SendCircleTime, this,
            &MainWindow::rcvCircleTime);

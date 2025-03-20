@@ -15,6 +15,7 @@ public:
   void resetStopWatch();
 
   QString getStrTime();
+  QTimer* getTimer(){ return timer_;};
 
 private:
   int milliseconds_, seconds_, minutes_, hours_;
@@ -23,7 +24,6 @@ private:
   bool reset_timer_ = true;
   int time_prev_lap_ = 0;
   QString str_time_;
-
   QTimer *timer_;
 
 public slots:
