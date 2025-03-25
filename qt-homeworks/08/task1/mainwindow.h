@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include "database.h"
-#include "dbdata.h"
+#include "setdbconnection.h"
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QtConcurrent>
@@ -38,7 +38,7 @@ private:
     QVector<QString> dataForConnect; // Данные для подключения к БД.
 
     Ui::MainWindow *ui;
-    DbData *dataDb;
+    SetDBConnection *dataDb;
     DataBase *dataBase;
     QMessageBox *msg;
 

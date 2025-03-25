@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
    * Выделим память под необходимые объекты. Все они наследники
    * QObject, поэтому воспользуемся иерархией.
    */
-    dataDb = new DbData(this);
+    dataDb = new SetDBConnection(this);
     dataBase = new DataBase(this);
     msg = new QMessageBox(this);
 
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
    * Устанавливаем данные для подключениея к БД.
    * Поскольку метод небольшой используем лямбда-функцию.
    */
-    connect(dataDb, &DbData::sig_sendData, this,
+    connect(dataDb, &SetDBConnection::sig_sendData, this,
             [&](QVector<QString> receivData) { dataForConnect = receivData; });
 
     /*

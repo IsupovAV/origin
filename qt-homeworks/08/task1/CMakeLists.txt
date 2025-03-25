@@ -19,13 +19,18 @@ set(PROJECT_SOURCES
         mainwindow.ui
         database.h
         database.cpp
-        dbdata.h
-        dbdata.cpp
-        dbdata.ui
+
+
+
 )
 
 add_executable(task1
 	${PROJECT_SOURCES}
+        setdbconnection.ui
+        setdbconnection.h
+        setdbconnection.cpp
+        resource.qrc
+
 )
 
 
