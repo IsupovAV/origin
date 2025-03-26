@@ -5,7 +5,10 @@ DataBase::DataBase(QObject *parent) : QObject{parent} {
     queryModel = new QSqlQueryModel;
 }
 
-DataBase::~DataBase() { delete dataBase; }
+DataBase::~DataBase() {
+    delete queryModel;
+    delete dataBase;
+}
 
 /*!
  * \brief Метод добавляет БД к экземпляру класса QSqlDataBase
