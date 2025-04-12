@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>841</width>
+    <height>457</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Инспектор аэропортов</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/aeroport.ico</normaloff>:/aeroport.ico</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
+     <layout class="QGridLayout" name="gridLayout" rowstretch="50,50,0" columnstretch="25,75">
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="grb_aero_direction">
+        <property name="title">
+         <string>Аэопорт и направление</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QGroupBox" name="grb_aeroport">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="title">
+            <string>Аэропорт</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QComboBox" name="cmb_aerolist"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="grb_direction">
+           <property name="title">
+            <string>Направление</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QRadioButton" name="rb_arrival">
+              <property name="text">
+               <string>Прибытие в аэропорт</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="rb_departure">
+              <property name="text">
+               <string>Вылет из аэропорта</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="grb_date">
+           <property name="title">
+            <string>Расписание на дату</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QDateEdit" name="dte_date">
+              <property name="keyboardTracking">
+               <bool>false</bool>
+              </property>
+              <property name="dateTime">
+               <datetime>
+                <hour>0</hour>
+                <minute>0</minute>
+                <second>0</second>
+                <year>2017</year>
+                <month>1</month>
+                <day>1</day>
+               </datetime>
+              </property>
+              <property name="time">
+               <time>
+                <hour>0</hour>
+                <minute>0</minute>
+                <second>0</second>
+               </time>
+              </property>
+              <property name="maximumDateTime">
+               <datetime>
+                <hour>23</hour>
+                <minute>59</minute>
+                <second>59</second>
+                <year>2017</year>
+                <month>9</month>
+                <day>14</day>
+               </datetime>
+              </property>
+              <property name="minimumDateTime">
+               <datetime>
+                <hour>3</hour>
+                <minute>0</minute>
+                <second>0</second>
+                <year>2016</year>
+                <month>8</month>
+                <day>15</day>
+               </datetime>
+              </property>
+              <property name="maximumDate">
+               <date>
+                <year>2017</year>
+                <month>9</month>
+                <day>14</day>
+               </date>
+              </property>
+              <property name="minimumDate">
+               <date>
+                <year>2016</year>
+                <month>8</month>
+                <day>15</day>
+               </date>
+              </property>
+              <property name="maximumTime">
+               <time>
+                <hour>23</hour>
+                <minute>59</minute>
+                <second>59</second>
+               </time>
+              </property>
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+              <property name="timeSpec">
+               <enum>Qt::TimeSpec::UTC</enum>
+              </property>
+              <property name="date">
+               <date>
+                <year>2017</year>
+                <month>1</month>
+                <day>1</day>
+               </date>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1" rowspan="3">
+       <widget class="QGroupBox" name="grb_schedule">
+        <property name="title">
+         <string>Расписание</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QTableView" name="tbv_shedule">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="grb_actions">
+        <property name="title">
+         <string>Команды</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QPushButton" name="pb_get_schedule">
+           <property name="text">
+            <string>Получить расписание</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_clear_schedule">
+           <property name="text">
+            <string>Очистить расписание</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_statistics">
+           <property name="text">
+            <string>Статистики</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Orientation::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>841</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mnu_file">
+    <property name="title">
+     <string>&amp;Файл</string>
+    </property>
+    <addaction name="mnu_connect"/>
+    <addaction name="mnu_disconnect"/>
+    <addaction name="separator"/>
+    <addaction name="mnu_settings"/>
+    <addaction name="separator"/>
+    <addaction name="mnu_exit"/>
+   </widget>
+   <widget class="QMenu" name="mnu_help">
+    <property name="title">
+     <string>&amp;Справка</string>
+    </property>
+    <addaction name="mnu_about"/>
+   </widget>
+   <widget class="QMenu" name="mnu_commands">
+    <property name="title">
+     <string>&amp;Команды</string>
+    </property>
+    <addaction name="mnu_get_schedule"/>
+    <addaction name="mnu_clear_schedule"/>
+    <addaction name="mnu_statistics"/>
+   </widget>
+   <addaction name="mnu_file"/>
+   <addaction name="mnu_commands"/>
+   <addaction name="mnu_help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="mnu_connect">
+   <property name="text">
+    <string>&amp;Подключиться к базе</string>
+   </property>
+  </action>
+  <action name="mnu_disconnect">
+   <property name="text">
+    <string>&amp;Отключиться от базы</string>
+   </property>
+  </action>
+  <action name="mnu_settings">
+   <property name="text">
+    <string>&amp;Настройка подключения</string>
+   </property>
+  </action>
+  <action name="mnu_exit">
+   <property name="text">
+    <string>Вы&amp;ход</string>
+   </property>
+  </action>
+  <action name="mnu_about">
+   <property name="text">
+    <string>&amp;О программе</string>
+   </property>
+  </action>
+  <action name="mnu_get_schedule">
+   <property name="text">
+    <string>&amp;Получить расписание</string>
+   </property>
+  </action>
+  <action name="mnu_clear_schedule">
+   <property name="text">
+    <string>&amp;Очисить расписание</string>
+   </property>
+  </action>
+  <action name="mnu_statistics">
+   <property name="text">
+    <string>&amp;Статистики</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>mnu_exit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>420</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
