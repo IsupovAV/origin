@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "author": "Исупов А.В.",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 87, "left": 28.2, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -49.3, "left": 115, "attrs": {} }
+  ],
+  "connections": [
+    [ "pot1:VCC", "uno:5V", "red", [ "v28.8", "h152.8", "v268.8", "h-128.6" ] ],
+    [ "pot1:SIG", "uno:A0", "green", [ "v38.4", "h153.2", "v249.6", "h-71" ] ],
+    [ "pot1:GND", "uno:GND.1", "black", [ "v19.2", "h-19.2" ] ]
+  ],
+  "dependencies": {}
+}
