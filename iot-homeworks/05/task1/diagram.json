@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "author": "Sasa",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 200, "left": 20, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 3.43, "left": 16, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 140, "left": 220, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 357.8,
+      "left": -202.2,
+      "attrs": { "temperature": "20.0" }
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc2",
+      "top": 233,
+      "left": -202.2,
+      "attrs": { "temperature": "20.0" }
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc3",
+      "top": 98.6,
+      "left": -202.2,
+      "attrs": { "temperature": "20.0" }
+    }
+  ],
+  "connections": [
+    [ "uno:GND.1", "lcd:VSS", "black", [ "v-51", "*", "h0", "v18" ] ],
+    [ "uno:GND.1", "lcd:K", "black", [ "v-51", "*", "h0", "v18" ] ],
+    [ "uno:GND.1", "lcd:RW", "black", [ "v-51", "*", "h0", "v18" ] ],
+    [ "uno:5V", "lcd:VDD", "red", [ "v40.5", "h-170.4", "v-259.2", "h51.9" ] ],
+    [ "uno:5V", "r1:2", "red", [ "v40.5", "h127.2", "v-268.5", "h-28.4" ] ],
+    [ "r1:1", "lcd:A", "pink", [] ],
+    [ "uno:12", "lcd:RS", "blue", [ "v-16", "*", "h0", "v20" ] ],
+    [ "uno:11", "lcd:E", "purple", [ "v-20", "*", "h0", "v20" ] ],
+    [ "uno:10", "lcd:D4", "green", [ "v-24", "*", "h0", "v20" ] ],
+    [ "uno:9", "lcd:D5", "brown", [ "v-28", "*", "h0", "v20" ] ],
+    [ "uno:8", "lcd:D6", "gold", [ "v-32", "*", "h0", "v20" ] ],
+    [ "uno:7", "lcd:D7", "gray", [ "v-36", "*", "h0", "v20" ] ],
+    [ "ntc1:OUT", "uno:A0", "green", [ "h67.2", "v47.9", "h230.4" ] ],
+    [ "ntc1:VCC", "uno:5V", "red", [ "h76.8", "v38.4", "h172.8" ] ],
+    [ "ntc1:GND", "uno:GND.2", "black", [ "h48", "v28.8", "h9.6" ] ],
+    [ "ntc2:OUT", "uno:A1", "green", [ "h28.8", "v182.3", "h278.4" ] ],
+    [ "ntc3:OUT", "uno:A2", "green", [ "h19.2", "v326.3", "h297.6" ] ],
+    [ "ntc2:VCC", "uno:5V", "red", [ "h48", "v163.2", "h0", "v9.6", "h201.6" ] ],
+    [ "ntc3:VCC", "uno:5V", "red", [ "h38.4", "v345.6", "h211.2" ] ],
+    [ "ntc2:GND", "uno:GND.2", "black", [ "h9.6", "v182.4", "h240" ] ],
+    [ "ntc3:GND", "uno:GND.2", "black", [ "h48", "v364.8", "h201.6" ] ]
+  ],
+  "dependencies": {}
+}
