@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "author": "Исупов Александр",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 154.2, "left": 18.6, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 91.2,
+      "left": 133.85,
+      "rotate": 90,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 91.2,
+      "left": 143.45,
+      "rotate": 90,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 91.2,
+      "left": 153.05,
+      "rotate": 90,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 91.2,
+      "left": 210.65,
+      "rotate": 90,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": 91.2,
+      "left": 191.45,
+      "rotate": 90,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": 91.2,
+      "left": 181.85,
+      "rotate": 90,
+      "attrs": { "value": "300" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": -22.8, "left": 80.6, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -22.8,
+      "left": 109.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -22.8,
+      "left": 138.2,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-led", "id": "led4", "top": -22.8, "left": 167, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led5",
+      "top": -22.8,
+      "left": 195.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led6",
+      "top": -22.8,
+      "left": 225,
+      "attrs": { "color": "red", "flip": "" }
+    },
+    { "type": "wokwi-analog-joystick", "id": "joystick1", "top": -0.6, "left": -81, "attrs": {} }
+  ],
+  "connections": [
+    [ "led1:C", "led2:C", "black", [ "v19.2", "h29.2" ] ],
+    [ "led2:C", "led3:C", "black", [ "v19.2", "h29.2" ] ],
+    [ "led3:C", "led4:C", "black", [ "v19.2", "h29.2" ] ],
+    [ "led4:C", "led5:C", "black", [ "v19.2", "h29.2" ] ],
+    [ "led5:C", "led6:C", "black", [ "v19.2", "h29.2" ] ],
+    [ "uno:9", "r3:2", "green", [ "v0" ] ],
+    [ "uno:10", "r2:2", "green", [ "v0" ] ],
+    [ "uno:11", "r1:2", "green", [ "v0" ] ],
+    [ "r1:1", "led1:A", "green", [ "h-57.6" ] ],
+    [ "r2:1", "led2:A", "green", [ "h0", "v-9.6", "h-38.4" ] ],
+    [ "r3:1", "led3:A", "green", [ "h0", "v-19.2", "h-19.2" ] ],
+    [ "uno:3", "r4:2", "green", [ "v0" ] ],
+    [ "uno:5", "r5:2", "green", [ "v0" ] ],
+    [ "uno:6", "r6:2", "green", [ "v0" ] ],
+    [ "r6:1", "led4:A", "green", [ "h-19.2" ] ],
+    [ "r5:1", "led5:A", "green", [ "h0" ] ],
+    [ "r4:1", "led6:A", "green", [ "h0", "v0", "h9.6" ] ],
+    [ "uno:GND.1", "led1:C", "black", [ "v-86.4", "h-47.7", "v-57.6" ] ],
+    [ "uno:5V", "joystick1:VCC", "red", [ "v19.1", "h-226.6" ] ],
+    [ "uno:A0", "joystick1:VERT", "green", [ "v28.7", "h-255.4" ] ],
+    [ "uno:A1", "joystick1:HORZ", "limegreen", [ "v38.3", "h-264.9" ] ],
+    [ "joystick1:SEL", "uno:2", "blue", [ "v278.4", "h326.4", "v-259.2", "h-48" ] ],
+    [ "joystick1:GND", "uno:GND.2", "black", [ "v288", "h211.2" ] ]
+  ],
+  "dependencies": {}
+}
