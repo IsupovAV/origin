@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 29.4, "left": -19.8, "attrs": {} },
+    {
+      "type": "wokwi-7segment",
+      "id": "sevseg1",
+      "top": 25.02,
+      "left": 346.72,
+      "attrs": { "digits": "4", "common": "cathode" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -159.25,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -140.05,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -120.85,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -101.65,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": -82.45,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": -63.25,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r7",
+      "top": -44.05,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r8",
+      "top": -24.85,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -89.8,
+      "left": -19.2,
+      "attrs": { "color": "red", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -176.2,
+      "left": -19.2,
+      "attrs": { "color": "green", "xray": "1" }
+    }
+  ],
+  "connections": [
+    [ "sevseg1:DIG4", "uno:13", "green", [ "v85.56", "h144", "v-384", "h-528.4" ] ],
+    [ "sevseg1:A", "r8:2", "green", [ "v-48" ] ],
+    [ "uno:3", "r7:1", "green", [ "v-76.8", "h4" ] ],
+    [ "r7:2", "sevseg1:B", "green", [ "v0", "h181.2" ] ],
+    [ "r6:1", "uno:4", "green", [ "v0", "h-57.6" ] ],
+    [ "r6:2", "sevseg1:C", "green", [ "v0", "h277.2", "v172.8", "h0", "v0", "h-115.2" ] ],
+    [ "uno:5", "r5:1", "green", [ "v-115.2", "h3.8" ] ],
+    [ "r5:2", "sevseg1:D", "green", [ "v0", "h286.8", "v201.6", "h-144" ] ],
+    [ "uno:6", "r4:1", "green", [ "v-134.4", "h3.7" ] ],
+    [ "r4:2", "sevseg1:E", "green", [ "v0", "h296.4", "v230.4", "h-163.2" ] ],
+    [ "uno:7", "r3:1", "green", [ "v-153.6", "h3.6" ] ],
+    [ "r3:2", "sevseg1:F", "green", [ "v0", "h152.4" ] ],
+    [ "uno:8", "r2:1", "green", [ "v0" ] ],
+    [ "r2:2", "sevseg1:G", "green", [ "v0", "h306", "v278.4", "h-134.4" ] ],
+    [ "r1:2", "sevseg1:DP", "green", [ "h315.6", "v307.2", "h-163.2" ] ],
+    [ "uno:12", "sevseg1:DIG3", "green", [ "v-230.4", "h365.3" ] ],
+    [ "uno:11", "sevseg1:DIG2", "green", [ "v-220.8", "h346.2" ] ],
+    [ "uno:10", "sevseg1:DIG1", "green", [ "v-211.2", "h307.9" ] ],
+    [ "uno:GND.1", "btn1:2.l", "black", [ "v-67.2", "h-124.5", "v-115.2" ] ],
+    [ "btn2:2.l", "uno:GND.1", "black", [ "h-19.2", "v38.6", "h124.8" ] ],
+    [ "btn2:1.r", "uno:0", "orange", [ "h19.4", "v163.2", "h168.5" ] ],
+    [ "uno:2", "r8:1", "green", [ "v0" ] ],
+    [ "uno:A0", "btn1:1.l", "red", [ "v28.7", "h-236.2", "v-19.2" ] ],
+    [ "uno:9", "r1:1", "green", [ "v-192", "h10.4" ] ]
+  ],
+  "dependencies": {}
+}
