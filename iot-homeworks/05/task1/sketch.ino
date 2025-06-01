@@ -1,6 +1,9 @@
 #include <LiquidCrystal.h>
 #include <math.h>
 
+#define DELAY_READ 10   // Задержка чтения
+#define NUM_READ 10     // Количество чтений для усреднения
+
 // Инициализируем объект-экран
 LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
 
@@ -10,62 +13,49 @@ const int ntc2 = A1;
 const int ntc3 = A2;
 
 const int sz_array = 3;
-float arr_ntc[sz_array] {0};
+float arr_ntc[sz_array] = {0, 0, 0};
 
 void setup() {
   lcd.begin(16, 2);
   lcd.clear();
+  arr_ntc[0] = average(ntc1);
+  arr_ntc[1] = average(ntc2);
+  arr_ntc[2] = average(ntc3);
 }
 
 // Функция для перевода показаний датчика в градусы Цельсия
-float Getterm(int RawADC) {
-  float celsius = 1 / (log(1 / (1023. / RawADC - 1)) / 3950 + 1.0 / 298.15) - 273.15;
+float Celsius(int RawADC) {
+  float celsius = 1 / (log(1 / (1023. / RawADC - 1)) / 3950. + 1.0 / 298.15) - 273.15;
   return celsius;
 }
 
 // среднее с датчика ntc
 float average(int ntc) {
   float data = 0;
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < NUM_READ; i++) {
     data += analogRead(ntc);
-    delay(100);
+    delay(DELAY_READ);
   }
-  return Getterm(data / 10);
+  return Celsius(data / NUM_READ);
 }
 
-// максимальное значение из трёх 
+// максимальное значение из трёх
 float maximum(float* arr) {
-  float mx = arr[0];
-  if (arr[1] > mx)
-    mx = arr[1];
-  if (arr[2] > mx)
-    mx = arr[2];
-  return mx;
+  return max(max(arr[0], arr[1]), arr[2]);;
 }
 
-// минимальное значение из трёх 
+// минимальное значение из трёх
 float minimum(float* arr) {
-  float mn = arr[0];
-  if (arr[1] < mn)
-    mn = arr[1];
-  if (arr[2] < mn)
-    mn = arr[2];
-  return mn;
+  return min(min(arr[0], arr[1]), arr[2]);
 }
 
 // среднее из трёх
 float avgValue(float* arr) {
-  float sum = arr[0] + arr[1] + arr[2];
-  return sum / sz_array;
+  return (arr[0] + arr[1] + arr[2])/ sz_array;
 }
 
-void loop() {
-  arr_ntc[0] = average(ntc1);
-  arr_ntc[1] = average(ntc2);
-  arr_ntc[2] = average(ntc3);
-
-  // вывод
-  lcd.clear();
+// вывод
+void displayData() {
   lcd.setCursor(0, 0);
   lcd.print("MX=");
   lcd.print(maximum(arr_ntc), 1);
@@ -77,6 +67,11 @@ void loop() {
   lcd.setCursor(0, 1);
   lcd.print("AVG=");
   lcd.print(avgValue(arr_ntc));
+}
 
-  delay(500);
+void loop() {
+  arr_ntc[0] = average(ntc1);
+  arr_ntc[1] = average(ntc2);
+  arr_ntc[2] = average(ntc3);
+  displayData();
 }

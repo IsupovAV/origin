@@ -1,9 +1,13 @@
-#include <LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 
-LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+#define I2C_ADDR    0x27
+#define LCD_COLUMNS 16
+#define LCD_LINES   2
 
-const int Y_PIN = A0;
+LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLUMNS, LCD_LINES); 
+
 const int X_PIN = A1;
+const int Y_PIN = A0;
 const int SEL_PIN = 3;
 
 const int ledPin = 13;
@@ -42,15 +46,7 @@ bool is_expired(unsigned long duration) {
   return current_millis - prev_millis >= duration;
 }
 
-void setup() {
-  pinMode(ledPin, OUTPUT);
-  pinMode(pir1Pin, INPUT);
-  Serial.begin(9600);
-  pinMode(Y_PIN, INPUT);
-  pinMode(X_PIN, INPUT);
-  pinMode(SEL_PIN, INPUT_PULLUP);
-
-  lcd.begin(16, 2);
+void display(){
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Delay: ");
@@ -58,13 +54,23 @@ void setup() {
   lcd.print(" sec");
 }
 
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(pir1Pin, INPUT);
+  Serial.begin(9600);
+  pinMode(Y_PIN, INPUT);
+  pinMode(X_PIN, INPUT);
+  pinMode(SEL_PIN, INPUT_PULLUP);
+  lcd.begin(16, 2);
+  lcd.backlight();
+  display();
+}
+
 void loop() {
   int curr_status = debounce(last_status);
   if (last_status == HIGH && curr_status == LOW) {
-    timeout = 0; 
-    lcd.print("Delay: ");
-    lcd.print(timeout);
-    lcd.print(" sec");
+    timeout = 0;
+    display();
   }
   last_status = curr_status;
 
@@ -73,11 +79,7 @@ void loop() {
   if (x != last_x) {
     change_delay(x, timeout);
     last_x = x;
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Delay: ");
-    lcd.print(timeout);
-    lcd.print(" sec");
+    display();
   }
 
   val = digitalRead(pir1Pin);

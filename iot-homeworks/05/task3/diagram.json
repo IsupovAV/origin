@@ -4,8 +4,14 @@
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-arduino-uno", "id": "uno", "top": 200, "left": 20, "attrs": {} },
-    { "type": "wokwi-lcd1602", "id": "lcd", "top": 8, "left": 20, "attrs": {} },
-    { "type": "wokwi-resistor", "id": "r1", "top": 140, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 6.4, "left": 15.2, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 147.95,
+      "left": 220.8,
+      "attrs": { "value": "300" }
+    },
     {
       "type": "wokwi-analog-joystick",
       "id": "joystick1",
@@ -39,15 +45,19 @@
     [ "uno:7", "lcd:D7", "gray", [ "v-36", "*", "h0", "v20" ] ],
     [ "uno:GND.1", "r2:2", "black", [ "v-36.2", "h-183.5" ] ],
     [ "r2:1", "led1:C", "black", [ "h0" ] ],
-    [ "led1:A", "uno:13", "green", [ "v0", "h9.6", "v105.6", "h172.8" ] ],
+    [ "led1:A", "uno:13", "limegreen", [ "v0", "h9.6", "v105.6", "h172.8" ] ],
     [ "uno:5V", "joystick1:VCC", "red", [ "v40.5", "h309.6" ] ],
     [ "pir1:VCC", "uno:5V", "red", [ "v134.4", "h-204" ] ],
-    [ "pir1:OUT", "uno:2", "green", [ "v57.6", "h-67.34", "v-172.8", "h-67.2" ] ],
+    [ "pir1:OUT", "uno:2", "limegreen", [ "v57.6", "h-67.34", "v-172.8", "h-67.2" ] ],
     [ "pir1:GND", "uno:GND.2", "black", [ "v115.2", "h-211.46" ] ],
-    [ "joystick1:VERT", "uno:A0", "green", [ "v115.2", "h-268.8" ] ],
+    [ "joystick1:VERT", "uno:A0", "limegreen", [ "v115.2", "h-268.8" ] ],
     [ "joystick1:HORZ", "uno:A1", "green", [ "v134.4", "h-268.8" ] ],
     [ "joystick1:SEL", "uno:3", "green", [ "v67.2", "h-201.6", "v-182.4", "h-76.8" ] ],
-    [ "uno:GND.2", "joystick1:GND", "black", [ "v21.3", "h348.1" ] ]
+    [ "uno:GND.2", "joystick1:GND", "black", [ "v21.3", "h348.1" ] ],
+    [ "lcd:GND", "uno:GND.1", "black", [ "h-19.2", "v144", "h134.4" ] ],
+    [ "r1:1", "lcd:VCC", "red", [ "v0", "h-230.4", "v-115.2" ] ],
+    [ "lcd:SDA", "uno:A4", "cyan", [ "h-38.4", "v393.8", "h288" ] ],
+    [ "uno:A5", "lcd:SCL", "blue", [ "v69.3", "h-265.9", "v-393.6", "h9.6" ] ]
   ],
   "dependencies": {}
 }
