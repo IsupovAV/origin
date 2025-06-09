@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "author": "SasaSupov",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-a4988",
+      "id": "driver",
+      "top": 177.8,
+      "left": 350.8,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper",
+      "top": 1.64,
+      "left": 311.45,
+      "attrs": {
+        "size": "14",
+        "arrow": "darkgreen",
+        "display": "angle"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "uno:2",
+      "driver:STEP",
+      "green",
+      [
+        "v-47.4",
+        "h70.7",
+        "v325.2",
+        "h134.4"
+      ]
+    ],
+    [
+      "uno:3",
+      "driver:DIR",
+      "blue",
+      [
+        "v-57",
+        "h61",
+        "v344.4",
+        "h163.2"
+      ]
+    ],
+    [
+      "uno:4",
+      "driver:EN",
+      "yellow",
+      []
+    ],
+    [
+      "uno:GND",
+      "driver:GND",
+      "black",
+      []
+    ],
+    [
+      "uno:5V",
+      "driver:VDD",
+      "red",
+      [
+        "v115.7",
+        "h320",
+        "v-144",
+        "h-28.88"
+      ]
+    ],
+    [
+      "driver:2B",
+      "stepper:A-",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "driver:2A",
+      "stepper:A+",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "driver:1A",
+      "stepper:B+",
+      "limegreen",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "driver:1B",
+      "stepper:B-",
+      "gold",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "driver:RESET",
+      "driver:SLEEP",
+      "black",
+      [
+        "v9.6",
+        "h9.6"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

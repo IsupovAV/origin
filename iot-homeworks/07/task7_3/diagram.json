@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "author": "SasaSupov&ChatGPT",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 29.4,
+      "left": 105,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic",
+      "top": 29.3,
+      "left": 390.9,
+      "rotate": 180,
+      "attrs": {
+        "distance": "2"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo",
+      "top": 44.2,
+      "left": -104.6,
+      "rotate": 180,
+      "attrs": {
+        "hornColor": "gray"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "ultrasonic:GND",
+      "uno:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "ultrasonic:TRIG",
+      "uno:2",
+      "cyan",
+      [
+        "v-28.8",
+        "h-147.7"
+      ]
+    ],
+    [
+      "ultrasonic:ECHO",
+      "uno:3",
+      "blue",
+      [
+        "h0.8",
+        "v-38.4",
+        "h-148"
+      ]
+    ],
+    [
+      "servo:V+",
+      "uno:5V",
+      "red",
+      [
+        "h19.2",
+        "v153.5",
+        "h159.4"
+      ]
+    ],
+    [
+      "servo:GND",
+      "uno:GND",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "servo:PWM",
+      "uno:9",
+      "orange",
+      [
+        "h9.6",
+        "v-95.2",
+        "h193"
+      ]
+    ],
+    [
+      "ultrasonic:VCC",
+      "uno:5V",
+      "red",
+      [
+        "v-19.2",
+        "h76.8",
+        "v249.6",
+        "h-297.6"
+      ]
+    ],
+    [
+      "ultrasonic:GND",
+      "uno:GND.1",
+      "black",
+      [
+        "v-19.2",
+        "h-248.4"
+      ]
+    ],
+    [
+      "servo:GND",
+      "uno:GND.1",
+      "black",
+      [
+        "h30.6",
+        "v-104.6",
+        "h124.8"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}
