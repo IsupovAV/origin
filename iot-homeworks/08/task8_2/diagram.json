@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "SasaSupov",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -28.2, "left": -10.2, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -202.3,
+      "left": 94.28,
+      "attrs": { "size": "11" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -157,
+      "left": 259.2,
+      "attrs": { "color": "green", "bounce": "0", "label": "Start/Stop" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -89.8,
+      "left": 259.2,
+      "attrs": { "color": "blue", "bounce": "0", "label": "Direction of rotation" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 9.6, "left": 325.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "uno:9", "stepper1:B+", "cyan", [ "v0" ] ],
+    [ "uno:8", "stepper1:B-", "yellow", [ "v0" ] ],
+    [ "stepper1:A+", "uno:10", "blue", [ "v0" ] ],
+    [ "stepper1:A-", "uno:11", "orange", [ "v0" ] ],
+    [ "btn1:2.l", "uno:3", "green", [ "h0" ] ],
+    [ "uno:2", "btn2:2.l", "blue", [ "v-38.4", "h-5.5" ] ],
+    [ "btn1:1.r", "btn2:1.r", "black", [ "v0", "h9.8", "v67.2" ] ],
+    [ "gnd1:GND", "btn2:1.r", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
